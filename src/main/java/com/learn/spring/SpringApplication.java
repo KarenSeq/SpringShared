@@ -6,6 +6,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * Initializing beans by xml configuration
+ * 
  * @author Karen
  *
  */
@@ -21,10 +22,24 @@ public class SpringApplication {
 		// for creating and initializing objects
 		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
 
+		System.out.println();
+		System.out.println("Example for working of singleton scope:");
 		// fetches the required bean
-		Inventory inventory = (Inventory) context.getBean("inventory");
+		Inventory inventoryName1 = (Inventory) context.getBean("inventoryName");
+		inventoryName1.setName("Books");
+		System.out.println(inventoryName1.getName());
 
-		System.out.println(inventory.getName());
+		Inventory inventoryName2 = (Inventory) context.getBean("inventoryName");
+		System.out.println(inventoryName2.getName() + '\n');
+
+		System.out.println("Example for working of prototype scope:");
+		Inventory inventoryId1 = (Inventory) context.getBean("inventoryId");
+		inventoryId1.setId(1);
+		System.out.println(inventoryId1.getId());
+
+		Inventory inventoryId2 = (Inventory) context.getBean("inventoryId");
+		System.out.println(inventoryId2.getId() + "\n");
+
 		((ConfigurableApplicationContext) context).close();
 	}
 

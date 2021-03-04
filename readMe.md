@@ -1,3 +1,9 @@
+Spring is a framework which helps to develop Java applications rapidly and easily.
+
+- Bean scope and Bean Life Cycle
+To understand this, run SpringApplication.java as a Java Application.
+Bean Life cycle can be managed either by XML or Java configuration. XML configuration is implemented for Vendor class and Java configuration is implemented for Customer class.
+
 Interesting Reads
 -----------------
 - What is [IOC](https://www.java2novice.com/java_interview_questions/inversion-of-control/)

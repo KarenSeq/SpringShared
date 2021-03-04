@@ -4,6 +4,7 @@ import lombok.Data;
 
 /**
  * Inventory POJO
+ * 
  * @author Karen
  *
  */
@@ -13,5 +14,7 @@ public class Inventory {
 	private int id;
 
 	private String name;
+
+	private Double price;
 
 }
