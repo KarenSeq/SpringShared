@@ -123,4 +123,33 @@
 		</property>
 	</bean>
 
+	<!-- Auto-wiring -->
+	<!-- ByName looks for a bean with the same name; 'autowiringExample2' in 
+		this case, same name used in AutowiringExample1 class -->
+	<bean id="autoWiringByName"
+		class="com.learn.spring.model.AutowiringExample1" autowire="byName">
+		<property name="id" value="10"></property>
+	</bean>
+
+	<!-- ByType looks for same data type, com.learn.spring.model.AutowiringExample2 
+		in this case, 'id' in bean tag doesn't matter -->
+	<bean id="autoWiringByType"
+		class="com.learn.spring.model.AutowiringExample1" autowire="byType">
+		<property name="id" value="10"></property>
+	</bean>
+
+	<!-- Constructor looks for same constructor definition, com.learn.spring.model.AutowiringExample2() 
+		in this case, again 'id' in bean tag doesn't matter. AutowiringExample2 class 
+		has default constructor which is why it works -->
+	<bean id="autoWiringByConstructor"
+		class="com.learn.spring.model.AutowiringExample1"
+		autowire="constructor">
+		<property name="id" value="10"></property>
+	</bean>
+
+	<bean id="autowiringExample2"
+		class="com.learn.spring.model.AutowiringExample2">
+		<property name="name" value="byNameExample"></property>
+	</bean>
+
 </beans>

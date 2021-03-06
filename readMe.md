@@ -6,6 +6,7 @@ This project uses XML configuration for beans. Concepts implemented/used in here
 - Bean Definition Inheritance; 2 ways - Bean template or from another class.
 - Injecting Inner Beans
 - Injecting Collection; List, Set, Map, Properties.
+- Autowiring; ByName, ByType, Constructor
 
 To understand this, run SpringApplication.java as a Java Application.
 Bean Life cycle can be managed either by XML or Java configuration. 

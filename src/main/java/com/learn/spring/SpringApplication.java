@@ -4,6 +4,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.learn.spring.model.AutowiringExample1;
 import com.learn.spring.model.Customer;
 import com.learn.spring.model.Inventory;
 import com.learn.spring.model.JavaCollection;
@@ -77,6 +78,17 @@ public class SpringApplication {
 		System.out.println("Inventory Registration: " + inventoryRegistration.getRegistration());
 		Inventory inventoryAddress = (Inventory) context.getBean("inventoryAddress");
 		System.out.println("Inventory address: " + inventoryAddress.getAddress());
+		System.out.println("------------------------------------------------------------\n");
+
+		AutowiringExample1 autoWiringByName = (AutowiringExample1) context.getBean("autoWiringByName");
+		System.out.println("Autowiring by name: " + autoWiringByName.getAutowiringExample2().getName());
+
+		AutowiringExample1 autoWiringByType = (AutowiringExample1) context.getBean("autoWiringByType");
+		System.out.println("Autowiring by type: " + autoWiringByType.getAutowiringExample2().getName());
+
+		AutowiringExample1 autoWiringByConstructor = (AutowiringExample1) context.getBean("autoWiringByType");
+		System.out.println("Autowiring by constructor: " + autoWiringByConstructor.getAutowiringExample2().getName());
+
 		System.out.println("------------------------------------------------------------\n");
 		((ConfigurableApplicationContext) context).close();
 	}
