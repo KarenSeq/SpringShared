@@ -4,6 +4,11 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.learn.spring.model.Customer;
+import com.learn.spring.model.Inventory;
+import com.learn.spring.model.JavaCollection;
+import com.learn.spring.model.Vendor;
+
 /**
  * Initializing beans by xml configuration
  * 
@@ -22,6 +27,7 @@ public class SpringApplication {
 		// for creating and initializing objects
 		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
 
+		System.out.println("------------------------------------------------------------\n");
 		System.out.println();
 		System.out.println("Example for working of singleton scope:");
 		// fetches the required bean
@@ -40,6 +46,38 @@ public class SpringApplication {
 		Inventory inventoryId2 = (Inventory) context.getBean("inventoryId");
 		System.out.println(inventoryId2.getId() + "\n");
 
+		System.out.println("------------------------------------------------------------\n");
+		Customer customerRemarks = (Customer) context.getBean("customerRemarks");
+		System.out.println("***Bean Definition Inheritance Example**** " + customerRemarks.getRemarks() + "\n");
+
+		Vendor vendorRemarks = (Vendor) context.getBean("vendorRemarks");
+		System.out.println(
+				"***Bean Definition Inheritance by Abstract Example**** " + vendorRemarks.getRemarks2() + "\n");
+
+		System.out.println("------------------------------------------------------------\n");
+		Inventory inventoryInnerBean = (Inventory) context.getBean("outerBean");
+		inventoryInnerBean.getBookDetails();
+		System.out.println("***Inner bean*** " + inventoryInnerBean.getBookDetails().getAuthor() + "\n");
+
+		System.out.println("------------------------------------------------------------\n");
+		JavaCollection listInjectionBean = (JavaCollection) context.getBean("listInjection");
+		System.out.println("List of addresses: " + listInjectionBean.getAddressList());
+
+		JavaCollection setInjectionBean = (JavaCollection) context.getBean("setInjection");
+		System.out.println("Set of addresses: " + setInjectionBean.getAddressSet());
+
+		JavaCollection mapInjectionBean = (JavaCollection) context.getBean("mapInjection");
+		System.out.println("Map of addresses: " + mapInjectionBean.getAddressMap());
+
+		JavaCollection propInjectionBean = (JavaCollection) context.getBean("propInjection");
+		System.out.println("Prop of addresses: " + propInjectionBean.getAddressProp());
+		System.out.println("------------------------------------------------------------\n");
+
+		Inventory inventoryRegistration = (Inventory) context.getBean("inventoryRegistration");
+		System.out.println("Inventory Registration: " + inventoryRegistration.getRegistration());
+		Inventory inventoryAddress = (Inventory) context.getBean("inventoryAddress");
+		System.out.println("Inventory address: " + inventoryAddress.getAddress());
+		System.out.println("------------------------------------------------------------\n");
 		((ConfigurableApplicationContext) context).close();
 	}
 

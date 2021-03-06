@@ -1,4 +1,4 @@
-package com.learn.spring;
+package com.learn.spring.model;
 
 import lombok.Data;
 
@@ -6,6 +6,8 @@ import lombok.Data;
 public class Vendor {
 
 	private String name;
+	
+	private String remarks2;
 
 	/**
 	 * Method to setup a bean. Called immediately after bean instantiation. Should
@@ -14,6 +16,7 @@ public class Vendor {
 	 */
 	public void initExample() {
 		System.out.println("In init method...");
+	
 	}
 
 	/**

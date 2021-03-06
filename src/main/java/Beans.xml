@@ -6,10 +6,10 @@
    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
 	<!-- Default scope is singleton -->
-	<bean id="inventoryName" class="com.learn.spring.Inventory">
+	<bean id="inventoryName" class="com.learn.spring.model.Inventory">
 	</bean>
 
-	<bean id="inventoryId" class="com.learn.spring.Inventory"
+	<bean id="inventoryId" class="com.learn.spring.model.Inventory"
 		scope="prototype">
 	</bean>
 
@@ -17,13 +17,110 @@
 	<!-- Bean life cycle can be managed either this way individually or can 
 		be managed for all beans at once using default-init-method & default-destroy-method 
 		in beans tag -->
-	<bean id="vendorName" class="com.learn.spring.Vendor"
+	<bean id="vendorName" class="com.learn.spring.model.Vendor"
 		init-method="initExample" destroy-method="destroyExample">
 		<property name="name" value="Sahara Books"></property>
 	</bean>
 
 	<!-- This is to handle life cycle of bean using interfaces -->
-	<bean id="customerName" class="com.learn.spring.Customer">
+	<bean id="customerName" class="com.learn.spring.model.Customer">
+	</bean>
+
+	<!-- implements Bean post processor -->
+	<bean class="com.learn.spring.processor.CustomProcessor" />
+
+	<bean id="inventoryRemarks"
+		class="com.learn.spring.model.Inventory">
+		<property name="remarks" value="No remarks"></property>
+	</bean>
+
+	<!-- Bean Definition inheritance. Here remarks are inherited from inventoryRemarks 
+		bean -->
+	<bean id="customerRemarks" class="com.learn.spring.model.Customer"
+		parent="inventoryRemarks">
+	</bean>
+
+	<!-- Bean template for bean definition inheritance -->
+	<!-- he parent bean cannot be instantiated on its own because it is incomplete, 
+		and it is also explicitly marked as abstract. -->
+	<bean id="beanTemplate" abstract="true">
+		<property name="remarks2" value="No remarks 2"></property>
+	</bean>
+
+	<bean id="vendorRemarks" class="com.learn.spring.model.Vendor"
+		parent="beanTemplate">
+	</bean>
+
+	<bean id="outerBean" class="com.learn.spring.model.Inventory">
+		<property name="bookDetails">
+			<bean id="innerBean" class="com.learn.spring.model.Book">
+				<property name="author" value="Amish Tripathi"></property>
+			</bean>
+		</property>
+	</bean>
+
+	<!-- Collection injection - List -->
+	<bean id="listInjection"
+		class="com.learn.spring.model.JavaCollection">
+		<property name="addressList">
+			<list>
+				<value>India</value>
+				<value>France</value>
+				<value>France</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- Collection injection - Set -->
+	<bean id="setInjection"
+		class="com.learn.spring.model.JavaCollection">
+		<property name="addressSet">
+			<set>
+				<value>India</value>
+				<value>France</value>
+				<value>France</value>
+			</set>
+		</property>
+	</bean>
+
+	<!-- Collection injection - Map -->
+	<bean id="mapInjection"
+		class="com.learn.spring.model.JavaCollection">
+		<property name="addressMap">
+			<map>
+				<entry key="1" value="India"></entry>
+				<entry key="2" value="France"></entry>
+				<entry key="2" value="India"></entry>
+				<entry key="3" value="India"></entry>
+			</map>
+		</property>
+	</bean>
+
+	<!-- Collection injection - Property -->
+	<bean id="propInjection"
+		class="com.learn.spring.model.JavaCollection">
+		<property name="addressProp">
+			<props>
+				<prop key="1">India</prop>
+				<prop key="2">France</prop>
+				<prop key="2">India</prop>
+				<prop key="3">India</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- Injecting empty string value -->
+	<bean id="inventoryRegistration"
+		class="com.learn.spring.model.Inventory">
+		<property name="registration" value=""></property>
+	</bean>
+
+	<!-- Injecting null value -->
+	<bean id="inventoryAddress"
+		class="com.learn.spring.model.Inventory">
+		<property name="address">
+			<null></null>
+		</property>
 	</bean>
 
 </beans>

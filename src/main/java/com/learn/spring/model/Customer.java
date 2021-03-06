@@ -1,4 +1,4 @@
-package com.learn.spring;
+package com.learn.spring.model;
 
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
@@ -9,6 +9,8 @@ import lombok.Data;
 public class Customer implements InitializingBean, DisposableBean {
 
 	private String name;
+	
+	private String remarks;
 
 	/**
 	 * from DisposableBean interface
